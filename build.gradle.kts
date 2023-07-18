@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.9.0"
-    application
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 group = "io.rouk"
@@ -26,4 +26,10 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
+    archiveBaseName.set("io.rouk.keycloak-spotify")
+    archiveVersion.set("1.0.0")
+    archiveClassifier.set("BETA")
 }
